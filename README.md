@@ -6,7 +6,7 @@ This is my first Django project. It is intended to be an interative calendar app
 
 
 
-## Notes, primarily for my working reference
+### Notes, primarily for my working reference
 
 - Data shall be stored in a MySQL database. The primary table will be a table of individual resource requests, each with an associated date-time, place, resource name, event number and name, user responsible for setting up/striking, and some other stuff, mostly as foreign keys. 
 
@@ -19,3 +19,14 @@ This is my first Django project. It is intended to be an interative calendar app
 - Thereafter the calendar will be regularily refreshed by Ajax. I still have to figure this out. I'm assuming there is some database flag I can check to alert me when changes are made so I don't have to fetch the entire day's data every time.
 
 - Also, a thin vertical red line will show the current time, and eventually, and alarm will go off if an unset event is getting close. 
+
+
+### To do
+
+- Build models
+
+- Fill building and room tables for HCC
+
+- Create view for delivering rooms as JSON to calendar frame
+
+- Rewrite Calendar frame building from JSON and time iterator and changeable zoom factors

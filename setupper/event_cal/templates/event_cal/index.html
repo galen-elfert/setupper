@@ -1,0 +1,101 @@
+<html>
+<head>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'event_cal/style.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="{% static 'event_cal/scrollSync.js' %}"></script>
+</head>
+
+<body>
+    <div id="header">
+        <div id="header_building">
+            <h2 class="header">{{ building }}</h2>
+        </div>
+        <div id="header_date">
+            <h1 class="header">{{ year }}-{{ month }}-{{ day }}</h1>
+        </div>
+        <div id="header_username">
+            <h2 class="header">Galen Elfert</h2>
+        </div>
+    </div>
+    
+    <div id="bar">
+        <div id="bar_room">Room</div>
+        <div id="bar_time">
+            <table id="bar_time_table">
+                <tr id="bar_time_table_row">
+                    <td><div class="bar_time_table_elem">06:00</div></td>
+                    <td><div class="bar_time_table_elem">06:30</div></td>
+                    <td><div class="bar_time_table_elem">07:00</div></td>
+                    <td><div class="bar_time_table_elem">07:30</div></td>
+                    <td><div class="bar_time_table_elem">08:00</div></td>
+                    <td><div class="bar_time_table_elem">08:30</div></td>
+                    <td><div class="bar_time_table_elem">09:00</div></td>
+                    <td><div class="bar_time_table_elem">09:30</div></td>
+                    <td><div class="bar_time_table_elem">10:00</div></td>
+                    <td><div class="bar_time_table_elem">10:30</div></td>
+                    <td><div class="bar_time_table_elem">11:00</div></td>
+                    <td><div class="bar_time_table_elem">11:30</div></td>
+                    <td><div class="bar_time_table_elem">12:00</div></td>
+                    <td><div class="bar_time_table_elem">12:30</div></td>
+                    <td><div class="bar_time_table_elem">13:00</div></td>
+                    <td><div class="bar_time_table_elem">13:30</div></td>
+                    <td><div class="bar_time_table_elem">14:00</div></td>
+                    <td><div class="bar_time_table_elem">14:30</div></td>
+                    <td><div class="bar_time_table_elem">15:00</div></td>
+                    <td><div class="bar_time_table_elem">15:30</div></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    <div id="body">
+        <div id="body_left">
+            <div class="room_table_elem"><h2>1315</h2></div>
+            <div class="room_table_elem"><h2>1325</h2></div>
+            <div class="room_table_elem"><h2>1350</h2></div>
+            <div class="room_table_elem"><h2>1400</h2></div>
+            <div class="room_table_elem"><h2>1410</h2></div>
+            <div class="room_table_elem"><h2>1420</h2></div>
+            <div class="room_table_elem"><h2>1430</h2></div>
+            <div class="room_table_elem"><h2>1415</h2></div>
+            <div class="room_table_elem"><h2>1425</h2></div>
+            <div class="room_table_elem"><h2>1500</h2></div>
+            <div class="room_table_elem"><h2>1510</h2></div>
+            <div class="room_table_elem"><h2>1520</h2></div>
+            <div class="room_table_elem"><h2>1530</h2></div>
+        </div>
+        
+        <div id="body_right">
+            <div id="body_right_content">
+                <div id="time_line"></div>
+                <div class="event picked" id="event01">
+                    <h1>Event 1</h1>
+                    <ul>
+                        
+                    </ul>
+                </div>
+                <div class="event part_picked" id="event02"><h1>Event 2</h1></div>
+                <div class="event set" id="event03"><h1>Event 3</h1></div>
+                <div class="event part_set" id="event04"><h1>Event 4</h1></div>
+                <div class="event no_set" id="event05"><h1>Event 5</h1></div>
+                <div class="row"></div>
+                <div class="row"></div>
+                <div class="row"></div>
+                <div class="row"></div>
+                <div class="row"></div>
+                <div class="row"></div>
+                <div class="row"></div>
+                <div class="row"></div>
+                <div class="row"></div>
+                <div class="row"></div>
+                <div class="row"></div>
+                <div class="row"></div>
+            </div>
+        </div>
+    </div>
+
+<div id="bg_fade"></div>
+    
+</body>
+</html>

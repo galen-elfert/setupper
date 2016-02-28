@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'event_cal.apps.EventCalConfig',
+    'row_config.apps.RowConfigConfig',
     'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',

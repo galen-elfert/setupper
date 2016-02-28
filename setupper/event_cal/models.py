@@ -15,6 +15,7 @@ class Room(models.Model):
     building = models.ForeignKey(Building, on_delete=models.PROTECT)
     row_top = models.IntegerField()
     row_bottom = models.IntegerField()
+    label = models.BooleanField
     def __str__(self):
         return self.name
 
@@ -29,9 +30,15 @@ class Resource(models.Model):
     def __str__(self):
         return self.name
 
+class Colour(models.Model):
+    name = models.CharField(max_length=50)
+    hex_value = models.CharField(max_length=6)     # Hex RGB value
+    def __str__(self):
+        return '{0} ({1})'.format(self.name, self.hex_value)
+
 class User(models.Model):
     name = models.CharField(max_length=50)
-    colour = models.CharField(max_length=6)     # Hex RGB value
+    colour = models.ForeignKey(Colour, on_delete=models.PROTECT)     # Hex RGB value
     def __str__(self):
         return self.name
 
@@ -49,9 +56,12 @@ class Setup(models.Model):
     room = models.ForeignKey(Room, on_delete=models.PROTECT)
     event = models.ForeignKey(Event, on_delete=models.PROTECT)
     resource = models.ForeignKey(Resource, on_delete=models.PROTECT)
+    quantity = models.IntegerField()
     order_type = models.ForeignKey(OrderType, on_delete=models.PROTECT)
     setup_by = models.ForeignKey(User, on_delete=models.PROTECT, null=True, related_name='setups')
+    setup_time = models.DateTimeField(null=True)
     pickup_by = models.ForeignKey(User, on_delete=models.PROTECT, null=True, related_name='pickups')
+    pickup_time = models.DateTimeField(null=True)
     note = models.ForeignKey(Note, on_delete=models.SET_NULL, null=True)
 
 

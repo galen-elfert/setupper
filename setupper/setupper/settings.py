@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'djangobower',
     'event_cal.apps.EventCalConfig',
     'row_config.apps.RowConfigConfig',
     'polls.apps.PollsConfig',
@@ -126,3 +127,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'djangobower.finders.BowerFinder'
+)
+
+BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
+
+BOWER_PATH = '/usr/bin/bower'
+
+BOWER_INSTALLED_APPS = (
+    'interact.js',
+    'underscore',
+    'react',
+)
+

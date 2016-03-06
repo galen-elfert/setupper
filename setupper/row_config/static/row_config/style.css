@@ -26,18 +26,22 @@ table {
 }
 
 th {
-    padding: 20px 0px 10px 0px;
-    -webkit-transform: rotate(-70deg);
-    transform: rotate(-70deg);
+    height: 150px;
+    max-width: 40px; 
+    white-space: nowrap;
+    border: 1px solid #ddd;
+    padding: 5px 0px 0px 0px;
+    -webkit-transform: rotate(-80deg) translate(-40px, 0px);
+    transform: rotate(-80deg) translate(-40px, 0px);
 }
 
 tr {
-    height: 40px;
+    min-height: 40px;
 }
 
 .slide_cell {
-    width: 20px; 
-    border: 1px solid black;
+    min-width: 40px;
+    border: 1px solid #ddd;
     padding: 0;
     vertical-align: top;
 }

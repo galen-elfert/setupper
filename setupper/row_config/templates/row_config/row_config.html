@@ -18,10 +18,51 @@
             else if (a.fields.name < b.fields.name) return -1;
             else return 0;
         });
-        ReactDOM.render(
+
+        var appRef = ReactDOM.render(
           React.createElement(RowTable, {rooms: rooms}),
           document.getElementById('container')
         );
+
+        // Interact
+        var snapSettings = {
+                targets: [ 
+                    interact.createSnapGrid({ x: 40, y: 40 }) 
+                ],
+          range: Infinity,
+        };
+
+        interact('.slider')
+            .draggable({
+                snap: snapSettings, 
+                restrict: {
+                    restriction: 'parent', 
+                    endOnly: false,
+                },
+                autoscroll: true, 
+                onmove: dragMoveListener
+            })
+            .resizable({
+                snap: snapSettings,
+                edges: { left: false, right: false, bottom: true, top: false }
+            }).on('resizemove', resizeListener);
+
+        function dragMoveListener(event) {
+            var target = event.target; 
+            var index = parseInt(target.id.slice(6));
+            rooms[index].fields.row_top += Math.round(event.dy / 40);
+            rooms[index].fields.row_bottom += Math.round(event.dy / 40);
+            appRef.setState({rooms: rooms});
+        };
+        
+        function resizeListener(event) {
+            var target = event.target; 
+            var index = parseInt(target.id.slice(6));
+            rooms[index].fields.row_bottom += Math.round(event.dy / 40);
+            appRef.setState({rooms: rooms});
+        };
+
+
     </script>
 </body>
 </html>

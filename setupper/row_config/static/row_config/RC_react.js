@@ -2,35 +2,52 @@ var rowHeight = 40;
 
 var RowHeadings = React.createClass({
     render: function() {
-    var headings = [];
-    this.props.rooms.forEach(function(room) {
-    	headings.push(React.createElement('th', {key: room.pk}, room.fields.name));
-    });
-  	return (React.createElement('tr', {}, headings));
-  }
+        var headings = [];
+        this.props.rooms.forEach(function(room) {
+            headings.push(React.createElement('th', {key: room.pk}, room.fields.name));
+        });
+        return (React.createElement('tr', {}, headings));
+    }
 });
 
-var SlideColumns = React.createClass({
+var Slider = React.createClass({
+    render: function() {
+        var room = this.props.room;
+        var position = room.fields.row_top * rowHeight; 
+        var sliderLength = ((room.fields.row_bottom + 1) - room.fields.row_top) * rowHeight;
+        return (
+            React.createElement('td', {
+                className: 'slide_cell', 
+                height: this.props.height.toString() + 'px',
+                key: this.props.key }, 
+                React.createElement('div', {
+                    className: 'slider', 
+                    id: 'slider' + this.props.index.toString(),
+                    style: {
+                        height: sliderLength.toString() + 'px',
+                        transform: 'translateY(' + position + 'px)', 
+                        WebkitTransform: 'translateY('+ position + 'px)'
+                        },
+                    key: this.props.key }, 
+                    room.fields.row_top 
+                )
+            )
+        )
+    }
+
+});
+
+var SliderBox = React.createClass({
     render: function() {
         var cols = [];
         var height = this.props.rooms.length * rowHeight;
         this.props.rooms.forEach(function(room, index) {
-            var position = room.fields.row_top * rowHeight;
             cols.push(
-                React.createElement('td', {
-                    className: 'slide_cell', 
-                    height: height.toString() + 'px',
-                    key: index }, 
-                    React.createElement('div', {
-                        className: 'slider', 
-                        style: {
-                            transform: 'translateY(' + position + 'px)', 
-                            WebkitTransform: 'translateY('+ position + 'px)'
-                            },
-                        key: index }, 
-                        room.fields.row_top 
-                    )
-                )
+                React.createElement(Slider, {
+                    room: room, 
+                    index: index,
+                    key: index, 
+                    height: height}, {})
             );
         });
         return (React.createElement('tr', {}, cols))
@@ -38,35 +55,20 @@ var SlideColumns = React.createClass({
 });
 
 var RowTable = React.createClass({
-  render: function() {
-    return (
-      React.createElement('table', {}, 
-      	React.createElement('tbody', {},
-      	    React.createElement(RowHeadings, {rooms: this.props.rooms}, {}),
-            React.createElement(SlideColumns, {rooms: this.props.rooms}, {})
-        )
-      )
-    );
-  }
+    getInitialState: function() {
+        return {rooms: this.props.rooms};
+    },
+    render: function() {
+        return (
+            React.createElement('table', {}, 
+      	    React.createElement('tbody', {},
+      	        React.createElement(RowHeadings, {rooms: this.state.rooms}, {}),
+                React.createElement(SliderBox, {rooms: this.state.rooms}, {})
+                )
+            )
+        );
+    }
 });
 
 
-// Interact
-var snapSettings = {
-	targets: [ 
-            interact.createSnapGrid({ x: 40, y: 40 }) 
-        ],
-  range: Infinity,
-}
 
-interact('.slider')
-    .draggable({
-        snap: snapSettings, 
-        autoscroll: true, 
-        onmove: dragMoveListener
-    })
-
-function dragMoveListener(event) {
-    var target = event.target;
-
-}

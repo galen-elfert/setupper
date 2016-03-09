@@ -142,5 +142,7 @@ BOWER_INSTALLED_APPS = (
     'interact.js',
     'underscore',
     'react',
+    'jquery',
+    'jquery.ui',
 )
 
